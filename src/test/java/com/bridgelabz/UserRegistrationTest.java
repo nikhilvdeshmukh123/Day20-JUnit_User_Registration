@@ -4,98 +4,82 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class UserRegistrationTest {
-    //    Happy Test for first name, first letter - capital letter
-    @Test
-    public void firstNameHappyTest() {
-        UserRegistration validator = new UserRegistration();
-        boolean happyTest = validator.firstName("Nikhil");
-        Assert.assertTrue(happyTest);
-    }
 
-    //    Sad Test for first name, first letter - capital letter
     @Test
-    public void firstNameSadTest1() {
-        UserRegistration validator = new UserRegistration();
-        boolean sadTest = validator.firstName("nikhil");
-        Assert.assertFalse(sadTest);
-    }
-
-//    Happy Test for last name, first letter - capital letter
-    @Test
-    public void lastNameHappyTest() {
-        UserRegistration validator = new UserRegistration();
-        boolean happyTest = validator.lastName("Deshmukh");
-        Assert.assertTrue(happyTest);
-    }
-
-    //    Sad Test for last name, first letter - capital letter
-    @Test
-    public void lastNameSadTest() {
-        UserRegistration validator = new UserRegistration();
-        boolean sadTest = validator.lastName("deshmukh");
-        Assert.assertFalse(sadTest);
-    }
-
-    //    Sad Test for last name, first letter - capital letter
-    @Test
-    public void emailHappyTest() {
-        UserRegistration validator = new UserRegistration();
-        boolean happyTest = validator.email("deshmukhnikhil81@gmail.com");
-        Assert.assertFalse(happyTest);
+    public void givenFirstName_WhenProper_ShouldReturnTrue() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean firstName = userRegistration.validateFirstName("Nikhil");
+        Assert.assertTrue(firstName);
     }
 
     @Test
-    public void emailSadTest() {
-        UserRegistration validator = new UserRegistration();
-        boolean sadTest = validator.email("nikhildeshmukh.co.in");
-        Assert.assertFalse(sadTest);
+    public void givenLastName_WhenProper_ShouldReturnTrue() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean lastName = userRegistration.validateLastName("nikhil");
+        Assert.assertTrue(lastName);
     }
 
     @Test
-    public void mobNoHappyTest() {
-        UserRegistration validator = new UserRegistration();
-        boolean happyTest = validator.mobileNumber("91 9637863774");
-        Assert.assertTrue(happyTest);
+    public void givenEmail_WhenProper_ShouldReturnTrue() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean email = userRegistration.validateEmail("Nikhil.deshmukh20@gmail.com");
+        Assert.assertTrue(email);
     }
 
     @Test
-    public void mobNoSadTest() {
-        UserRegistration validator = new UserRegistration();
-        boolean sadTest = validator.mobileNumber("9637863774");
-        Assert.assertFalse(sadTest);
-    }
-    @Test
-    public void passwordHappyTest() {
-        UserRegistration validator = new UserRegistration();
-        boolean happyTest = validator.ruleOne("asdsfhwe");
-        Assert.assertTrue(happyTest);
+    public void givenPhoneNumber_WhenProperWithSpace_ShouldReturnTrue() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean phoneNumber = userRegistration.validatePhoneNumber("91 9637863774");
+        Assert.assertTrue(phoneNumber);
     }
 
     @Test
-    public void passwordSadTest1() {
-        UserRegistration validator = new UserRegistration();
-        boolean sadTest = validator.ruleOne("sd@A12");
-        Assert.assertFalse(sadTest);
+    public void givenPhoneNumber_WhenProperWithOutSpace_ShouldReturnTrue() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean phoneNumber = userRegistration.validatePhoneNumber("919637863774");
+        Assert.assertTrue(phoneNumber);
     }
 
     @Test
-    public void passwordSadTest2() {
-        UserRegistration validator = new UserRegistration();
-        boolean sadTest = validator.ruleTwo("asjd23$df");
-        Assert.assertFalse(sadTest);
+    public void givenPhoneNumber_WhenNotProper_ShouldReturnFalse() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean phoneNumber = userRegistration.validatePhoneNumber("9179");
+        Assert.assertTrue(phoneNumber);
     }
 
     @Test
-    public void passwordSadTest3() {
-        UserRegistration validator = new UserRegistration();
-        boolean sadTest = validator.ruleThird("asjdAG$df");
-        Assert.assertFalse(sadTest);
+    public void givenPassword_WhenMinEightChar_ShouldReturnTrue() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean password = userRegistration.validatePassword("Nikhil@123");
+        Assert.assertTrue(password);
     }
 
     @Test
-    public void passwordSadTest4() {
-        UserRegistration validator = new UserRegistration();
-        boolean sadTest = validator.ruleFourth("asjd23^$df");
-        Assert.assertFalse(sadTest);
+    public void givenPassword_WhenAtleastOne_Caps_ShouldReturnTrue() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean password = userRegistration.validatePassword("Nikhil@123");
+        Assert.assertTrue(password);
     }
+
+    @Test
+    public void givenPassword_WhenAtleastOne_Numerics_ShouldReturnTrue() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean password = userRegistration.validatePassword("Nikhil@1");
+        Assert.assertTrue(password);
+    }
+
+    @Test
+    public void givenPassword_HasExactlyOneSpecialCharacter_ShouldReturnTrue1() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean password = userRegistration.validatePassword("Nikhil@1");
+        Assert.assertTrue(password);
+    }
+
+    @Test
+    public void givenPassword_HasExactlyOneSpecialCharacter_ShouldReturnTrue() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean password = userRegistration.validatePassword("Nikhil@1");
+        Assert.assertTrue(password);
+    }
+
 }

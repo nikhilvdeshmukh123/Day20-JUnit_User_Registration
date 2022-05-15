@@ -1,50 +1,37 @@
 package com.bridgelabz;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-/*
- * @author Nikhil Deshmukh
- * User registration verification program
- * */
+
 public class UserRegistration {
-    //Method for first name
-    public boolean firstName(String name) {
-        Pattern pattern = Pattern.compile("^[A-Z]{1}[a-z]{3,}$");
-        return pattern.matcher(name).matches();
+
+    private static final String NAME_PATTERN = "^[A-Z]{1}[a-z]{2,}$";
+    private static final String EMAIL_PATTERN = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
+    private static final String PHONE_PATTERN = "^[9]{1}[1]{1}[ ]?[6-9]{1}[0-9]{9}$";
+    private static final String PASSWORD_PATTERN = "^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\\W).*$";
+
+    public boolean validateFirstName(String fname) {
+        Pattern pattern = Pattern.compile(NAME_PATTERN);
+        return Pattern.matches(NAME_PATTERN, fname);
     }
-    //Method for last name
-    public boolean lastName (String name) {
-        Pattern pattern = Pattern.compile("^[A-Z]{1}[a-z]{3,}$");
-        return pattern.matcher(name).matches();
+
+    public boolean validateLastName(String lName) {
+        Pattern pattern = Pattern.compile(NAME_PATTERN);
+        return Pattern.matches(NAME_PATTERN, lName);
     }
-    //Method for email
-    public boolean email (String mail) {
-        Pattern pattern = Pattern.compile("^[a-zA-Z]+[.][A-Za-z]+@[a-zA-Z]+[.]+[a-zA-Z]{2}+[.][A-Za-z]{2}+$");
-        return pattern.matcher(mail).matches();
+
+    public boolean validateEmail(String email) {
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        return Pattern.matches(EMAIL_PATTERN, email);
     }
-    //Method for Mobile number verification
-    public boolean mobileNumber (String mobNum) {
-        Pattern pattern = Pattern.compile("^[0-9]{2}+[ ][0-9]{10}$");
-        return pattern.matcher(mobNum).matches();
+
+    public boolean validatePhoneNumber(String phNumber) {
+        Pattern pattern = Pattern.compile(PHONE_PATTERN);
+        return Pattern.matches(PHONE_PATTERN, phNumber);
     }
-    //Method for password verification Rule1
-    public boolean ruleOne (String password){
-        Pattern pattern = Pattern.compile("^[a-zA-Z]{8,}$");
-        return pattern.matcher(password).matches();
-    }
-    //Method for password verification Rule2
-    public boolean ruleTwo (String password){
-        Pattern pattern = Pattern.compile("^[a-zA-Z]{1,}[a-zA-Z]{7,}$");
-        return pattern.matcher(password).matches();
-    }
-    //Method for password verification Rule3
-    public boolean ruleThird (String password){
-        Pattern pattern = Pattern.compile("^[a-zA-Z0-9]{1,}[a-zA-Z0-9]{7,}$");
-        return pattern.matcher(password).matches();
-    }
-    //Method for password verification Rule4
-    public boolean ruleFourth (String password){
-        Pattern pattern = Pattern.compile("^[a-zA-Z0-9@$!%*#?&]{1,}[a-zA-Z0-9@$!%*#?&]{7,}$");
-        return pattern.matcher(password).matches();
+
+    //
+    public boolean validatePassword(String password) {
+        Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
+        return Pattern.matches(PASSWORD_PATTERN, password);
     }
 }
